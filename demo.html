@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Demo</title>
+
+<!-- jnList所需css文件 -->
+<link href="Style/jnList.css" rel="stylesheet" type="text/css" />
+<!-- 用户自定义Css -->
+<link href="Style/myStyle.css" rel="stylesheet" type="text/css" />
+<!-- jnList所需Js文件 -->
+<script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+<script src="Scripts/jquery.jnList.js" type="text/javascript" ></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        //配置列表
+        $("#newsBox").get({
+            url: "http://172.21.13.2/jnList/news/get", //not null
+            url_pageNo: "pageNo",		//not null
+            url_pageSize: "pageSize",	//not null
+
+            width: 1000,                //default-value:700
+            height: 500,                //default-value:270
+            row_height: 25,             //default-value:25
+            class: 'newsBox',
+
+            page: {
+                class: "myPaginate",
+                visibility: 'visible',        //default-value:visible, hidden
+                display: 5,                  //default-value:5
+                page_size: 10,               //default-value:5
+                page_text_color: '#79B5E3', //default-background_color:#79B5E3
+                page_text_hover_color: '#2573AF'//default-background_color:#2573AF
+            },
+
+            data_count_name: "Count", //not null
+            data_records_name: "NewsList", //not null
+            columns_num: 1, //default-value:1
+            ul_class: "myUl",
+            li_class: "myLi",
+            Columns: [{
+                name: "news_title", //not null
+                type: "string",
+                width: 300,                 //default-value:500   
+                span_class: "span_string",
+                a_class: "myA",
+                slice: true,               //default-value:true，false
+                render: function (Row) {    //default-func:null
+                    return "<b>" + Row["news_title"] + "</b>";
+                    //return Row["news_title"];
+                },
+                img1_url: "Images/icon_new.png", //"../Images/icon_new.png"
+                img2_url: "Images/icon_new.png", //"../Images/icon_hot.png"
+                attchImg1: function (Row) { //default-func:null
+                    if (Row["news_id"] % 4 == 0)
+                        return true;
+                    else
+                        return false;
+                },
+                attchImg2: function (Row) { //default-func:null
+                    if (Row["news_id"] % 5 == 0)
+                        return true;
+                    else
+                        return false;
+                },
+                Click: function (Row) {
+                    return "http://www.baidu.com";
+                }
+            },
+            {
+                name: "news_datetime",  //not null
+                type: "timestamp",      //string,timestamp
+                width: 150,              //default-value:200
+                class: "span_date",
+                pattern: "yyyy-MM-dd"   //yyyy-MM-dd hh:mm:ss
+            }]
+        });
+
+        /*      JSON
+        NewsList":[
+        {"news_id":1,"news_title":"XX","news_datetime":"xx"},
+        {"news_id":2,"news_title":"XXX","news_datetime":"xx"},
+        {"news_id":3,"news_title":"XXX","news_datetime":"x"}]
+        */
+
+    });
+</script>
+</head>
+
+<body style="background-color: #5C87B2;font-family: Verdana,Helvetica,Sans-Serif;">
+<h1 style="margin:20px;">jnList Demo</h1>
+
+<!-- 获取新闻所需Html代码-->
+<div id="newsBox"></div>
+
+</body>
+</html>

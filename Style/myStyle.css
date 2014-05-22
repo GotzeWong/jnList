@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+/*自定义的主div样式*/
+.newsBox {
+    background-color: #FFF;
+    font-size: 13px;
+    width: 600px;
+    height: 770px;
+    padding: 10px;
+    text-align: left;
+}
+
+/*自定义的Li样式*/
+.myUl{
+    padding:0px;
+    margin:0px;
+}
+
+
+/*自定义的Li样式*/
+.myLi{
+    background:url('../Images/icon_arrow.gif') no-repeat scroll 0% 7px rgba(0, 0, 0, 0);
+}
+
+/*自定义的a样式*/
+.myA{
+}
+
+/*定义的span date样式*/
+.span_string
+{
+    /*color:Red;*/
+}
+
+
+/*自定义的span date样式*/
+.span_date
+{
+    /*color:Red;*/
+}
